@@ -7,7 +7,7 @@ Aliyun RDS Terraform Module
 
 The key features of this Module are:
 
-- **RDS**: Creates a new RDS with a Readonly instance.
+- **RDS**: Creates a new RDS along with a Readonly instance.
   
 Usage
 -------------------------------
@@ -15,17 +15,17 @@ Usage
 Use below snippet in tf file to create a RDS in Aliyun.
 
 ```
-module "geodashlotr_rds" {
+module "aliyun_rds" {
   source = "./modules/rds"
 
-  instance_name = "${terraform.workspace}_${var.geodashlotr_rds["instance_name"]}_db"
-  vswitch_id    = "${module.aliyun_vpc.db_vswitch_az_a_id}"
-  zone_id       = "${var.geodashlotr_rds["zone_id"]}"
+  instance_name = "my_db_instance_name"
+  vswitch_id    = "db_vswitch_id"
+  zone_id       = "availability_zone_id"
 
-  instance_type = "${var.geodashlotr_rds["instance_type"]}"
-  storage_size  = "${var.geodashlotr_rds["storage_size"]}"
+  instance_type = "instance_type"
+  storage_size  = "50" // Modify it based on the requirement
 
-  parameters = "${var.geodashlotr_rds_parameters}"
+  parameters = "rds_parameters_if_any"
 }
 ```
 
